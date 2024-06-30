@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Homework</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e2e2e2;
+        }
+        .submitted {
+            color: green;
+        }
+        .not-submitted {
+            color: red;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: red;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>과제 정보</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>과목명</th>
+                <th>과제</th>
+                <th>마감 기한</th>
+                <th>상태</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for homework in student_homework %}
+            <tr>
+                <td>{{ homework[0] }}</td>
+                <td>{{ homework[1] }}</td>
+                <td>{{ homework[2] }}</td>
+                <td>
+                        <form method="POST" action="{{ url_for('login')}}" style="display:inline;">
+                            <button type="submit" class="submit-button">제출</button>
+                        </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        <button type="button" onclick="location.href='/logout/'">로그아웃</button>
+    </p>
+</body>
+</html>
